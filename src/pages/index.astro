@@ -1,0 +1,26 @@
+---
+import { Markdown } from 'astro/components'
+import DefaultPageLayout from '$/layouts/default.astro'
+import Prose from '$/components/Prose.astro'
+
+const title = '';
+const description = '';
+---
+<DefaultPageLayout content={{ title, description }}>
+    <Prose>
+        <Markdown>
+            #### Hey there 👋!
+            I'm Blagica and I'm a Full-Stack Web Developer. I've been working professionally since the beginning of 2019.
+
+            The tech stack I'm using consists of PHP, Javascript (Vue.js), MySQL, but that depends on the project I'm working on.
+
+            Feel free to get in touch with me, or check out my Github / LinkedIn if you're interested.
+        </Markdown>
+    </Prose>
+</DefaultPageLayout>
+
+<style>
+    .author {
+        @apply flex flex-col w-full
+    }
+</style>
