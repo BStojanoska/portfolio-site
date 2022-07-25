@@ -7,7 +7,7 @@
 ---
 
 <header class="header">
-    <div class="header__logo">
+    <div class="header__logo self-end">
         <a href="/" class="avatar">
             <img class="header__logo-img" src="/assets/blagica-transparrent3.png" alt="Blagica" />
         </a>
@@ -15,7 +15,7 @@
     <div class="header__meta flex-1 flex flex-col place-content-center">
         <h3 class="header__title dark:text-primarySecondaryDark flex flex-row content-center justify-between">
             <a href="">{ SITE.name }</a>
-            <nav class="header__nav flex self-start md:self-center">
+            <nav class="header__nav hidden sm:flex self-start md:self-center">
                 <ul class="header__ref-list">
                     <!-- <li>
                         <SearchBtn client:visible />
@@ -66,10 +66,10 @@
         @apply w-32 h-32 md:w-64 md:h-64 overflow-hidden rounded-xl
     }
     .header__title {
-        @apply text-3xl font-extrabold md:text-5xl text-primarySecondary dark:text-primarySecondaryDark
+        @apply text-2xl sm:text-3xl font-extrabold md:text-5xl text-primarySecondary dark:text-primarySecondaryDark
     }
     .header__desc {
-        @apply text-lg md:text-xl flex-1 dark:text-gray-200
+        @apply text-base sm:text-lg md:text-xl flex-1 dark:text-gray-200
     }
     .header__ref-list {
         @apply flex gap-3 text-gray-400

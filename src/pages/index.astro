@@ -2,20 +2,45 @@
 import { Markdown } from 'astro/components'
 import DefaultPageLayout from '$/layouts/default.astro'
 import Prose from '$/components/Prose.astro'
+import { SITE } from '$/config'
+import SvgIcon from '$/components/SvgIcon.astro'
 
 const title = '';
 const description = '';
 ---
+
 <DefaultPageLayout content={{ title, description }}>
     <Prose>
         <Markdown>
             #### Hey there 👋!
-            I'm Blagica and I'm a Full-Stack Web Developer. I've been working professionally since the beginning of 2019.
+            I'm Blagica and I'm a Full-Stack Web Developer. I've been working professionally since the beginning of
+            2019.
 
-            The tech stack I'm using consists of PHP, Javascript (Vue.js), MySQL, but that depends on the project I'm working on.
+            The tech stack I'm using consists of PHP, Javascript (Vue.js), MySQL, but that depends on the project I'm
+            working on.
 
             Feel free to get in touch with me, or check out my Github / LinkedIn if you're interested.
         </Markdown>
+        <section class="flex sm:hidden justify-end mt-10 mr-5 text-primary">
+            <div class="mx-2">
+                <a href={ SITE.githubUrl }>
+                    <SvgIcon>
+                        <path
+                            d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+                        </path>
+                    </SvgIcon>
+                </a>
+            </div>
+            <div class="mx-2">
+                <a href={ SITE.linkedInUrl }>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="#7E22CE" viewBox="0 0 48 48" width="24px"
+                        height="24px">
+                        <path
+                            d="M25,2C12.318,2,2,12.317,2,25s10.318,23,23,23s23-10.317,23-23S37.682,2,25,2z M18,35h-4V20h4V35z M16,17 c-1.105,0-2-0.895-2-2c0-1.105,0.895-2,2-2s2,0.895,2,2C18,16.105,17.105,17,16,17z M37,35h-4v-5v-2.5c0-1.925-1.575-3.5-3.5-3.5 S26,25.575,26,27.5V35h-4V20h4v1.816C27.168,20.694,28.752,20,30.5,20c3.59,0,6.5,2.91,6.5,6.5V35z" />
+                    </svg>
+                </a>
+            </div>
+        </section>
     </Prose>
 </DefaultPageLayout>
 
