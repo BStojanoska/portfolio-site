@@ -9,7 +9,8 @@
 <header class="header">
     <div class="header__logo self-end">
         <a href="/" class="avatar">
-            <img class="header__logo-img" src="/assets/blagica-transparrent3.png" alt="Blagica" />
+            <img class="header__logo-img" src="/assets/blagica-edited2.png" alt="Blagica" />
+            <div class="header__logo_line"></div>
         </a>
     </div>
     <div class="header__meta flex-1 flex flex-col place-content-center">
@@ -60,10 +61,13 @@
         @apply flex flex-nowrap gap-4 border-b pt-3 /* border-gray-200 dark:border-gray-700 - check styles/global.css */
     }
     .header__logo-img {
-        background: radial-gradient(ellipse at 60% 40%, theme(colors.primaryDark) 0 10%, transparent 45% 100%),
-                    radial-gradient(ellipse at 65% 70%, theme(colors.primaryDark) 0 1%, transparent 30% 100%);
+        /* background: radial-gradient(ellipse at 60% 40%, theme(colors.primaryDark) 0 10%, transparent 45% 100%), */
+                    /* radial-gradient(ellipse at 65% 70%, theme(colors.primaryDark) 0 1%, transparent 30% 100%); */
 
-        @apply w-32 h-32 md:w-64 md:h-64 overflow-hidden rounded-xl
+        @apply w-32 h-32 md:w-64 md:h-64 overflow-hidden
+    }
+    .header__logo_line {
+        @apply w-32 h-1 bg-primarySecondary absolute top-0 right-0
     }
     .header__title {
         @apply text-2xl sm:text-3xl font-extrabold md:text-5xl text-primarySecondary dark:text-primarySecondaryDark
