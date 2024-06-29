@@ -1,0 +1,58 @@
+---
+import { getCollection } from "astro:content";
+import PageLayout from "@layouts/PageLayout.astro";
+import Container from "@components/Container.astro";
+import { dateRange } from "@lib/utils";
+import { VOLUNTEER } from "@consts";
+import type { ImageMetadata } from "astro";
+
+const collection = (await getCollection("volunteer")).sort(
+  (a, b) =>
+    new Date(b.data.dateStart).valueOf() - new Date(a.data.dateStart).valueOf()
+);
+
+const images = import.meta.glob<{ default: ImageMetadata }>(
+  "src/assets/extra/*.{jpeg,jpg,png,gif}"
+);
+
+console.log("images", images);
+
+const volunteering = await Promise.all(
+  collection.map(async (item) => {
+    const { Content } = await item.render();
+    return { ...item, Content };
+  })
+);
+---
+
+<PageLayout title={VOLUNTEER.TITLE} description={VOLUNTEER.DESCRIPTION}>
+  <Container>
+    <div class="space-y-10">
+      <div class="animate font-semibold text-black dark:text-white">work++</div>
+      <ul class="flex flex-col space-y-4">
+        {
+          volunteering.map((entry) => (
+            <li class="animate">
+              <div class="text-sm opacity-75">
+                {dateRange(entry.data.dateStart, entry.data.dateEnd)}
+              </div>
+              <div class="font-semibold text-black dark:text-white">
+                <a
+                  href={entry.data.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {entry.data.organization}
+                </a>
+              </div>
+              <div class="text-sm opacity-75">{entry.data.role}</div>
+              <article>
+                <entry.Content />
+              </article>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </Container>
+</PageLayout>
