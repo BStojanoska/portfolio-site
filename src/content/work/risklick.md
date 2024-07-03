@@ -2,7 +2,7 @@
 company: "Risklick"
 role: "Software Engineer"
 dateStart: "04/01/2024"
-dateEnd: "current"
+dateEnd: "07/01/2024"
 ---
 
 - Collaborated in a 4+ team environment
