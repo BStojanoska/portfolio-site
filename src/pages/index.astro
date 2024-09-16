@@ -26,6 +26,7 @@ const allwork = (await getCollection("work"))
       new Date(b.data.dateStart).valueOf() -
       new Date(a.data.dateStart).valueOf()
   )
+  .sort((a) => (a.data.dateEnd === "current" ? -1 : 1))
   .slice(0, SITE.NUM_WORKS_ON_HOMEPAGE);
 
 const work = await Promise.all(
@@ -74,14 +75,10 @@ const volunteer = await Promise.all(
       <section>
         <article class="space-y-4">
           <p class="animate">
-            I have been involved in delivering web applications, mostly in PHP
-            and JavaScript based on industry-standard practices, frameworks and
-            libraries, and I’m eager to pick up new things along the way.
-          </p>
-          <p class="animate">
-            With over 5 years experience, I’m always excited to tackle new
-            challenges and take my software development skills to the next
-            level.
+            With over 5 years experience, I have been involved in delivering web
+            applications, mostly in PHP and JavaScript based on
+            industry-standard practices, frameworks and libraries, and I’m eager
+            to pick up new things along the way.
           </p>
         </article>
       </section>
