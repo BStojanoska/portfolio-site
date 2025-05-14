@@ -4,41 +4,9 @@ import PageLayout from "@layouts/PageLayout.astro";
 import Container from "@components/Container.astro";
 import { VOLUNTEER } from "@consts";
 import DateRange from "@components/DateRange.vue";
+import { sortByDateAndStatus } from "@lib/utils";
 
-const collection = (await getCollection("volunteer")).sort(
-  (a, b) => {
-    const dateAStart = new Date(a.data.dateStart);
-    const dateBStart = new Date(b.data.dateStart);
-
-    // Primary sort: dateStart descending
-    if (dateBStart.valueOf() !== dateAStart.valueOf()) {
-      return dateBStart.valueOf() - dateAStart.valueOf();
-    }
-
-    // Secondary sort: current jobs (dateEnd is not a Date object) first
-    const aIsCurrent = !(a.data.dateEnd instanceof Date);
-    const bIsCurrent = !(b.data.dateEnd instanceof Date);
-
-    if (aIsCurrent && !bIsCurrent) { // a is current, b is not
-      return -1;
-    }
-    if (!aIsCurrent && bIsCurrent) { // b is current, a is not
-      return 1;
-    }
-
-    // Tertiary sort (if both have actual end dates): dateEnd descending
-    if (!aIsCurrent && !bIsCurrent) { // Both have actual end dates
-      // At this point, a.data.dateEnd and b.data.dateEnd are Date objects
-      const dateAEnd = a.data.dateEnd as Date;
-      const dateBEnd = b.data.dateEnd as Date;
-      return dateBEnd.valueOf() - dateAEnd.valueOf(); // Descending end dates
-    }
-
-    // If both are current (e.g., dateEnd is "current" or undefined for both),
-    // their relative order based on startDate is maintained.
-    return 0;
-  }
-);
+const collection = (await getCollection("volunteer")).sort(sortByDateAndStatus);
 
 const volunteering = await Promise.all(
   collection.map(async (item) => {

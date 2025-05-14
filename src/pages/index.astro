@@ -9,6 +9,7 @@ import { Image } from "astro:assets";
 import profilePhoto from "public/profile.png";
 import profileMobile from "public/profile-mobile.png";
 import DateRange from "@components/DateRange.vue";
+import { sortByDateAndStatus } from "@lib/utils";
 
 const blog = (await getCollection("blog"))
   .filter((post) => !post.data.draft)
@@ -21,12 +22,7 @@ const projects = (await getCollection("projects"))
   .slice(0, SITE.NUM_PROJECTS_ON_HOMEPAGE);
 
 const allwork = (await getCollection("work"))
-  .sort(
-    (a, b) =>
-      new Date(b.data.dateStart).valueOf() -
-      new Date(a.data.dateStart).valueOf()
-  )
-  .sort((a) => (a.data.dateEnd === "current" ? -1 : 1))
+  .sort(sortByDateAndStatus)
   .slice(0, SITE.NUM_WORKS_ON_HOMEPAGE);
 
 const work = await Promise.all(
@@ -37,11 +33,7 @@ const work = await Promise.all(
 );
 
 const allvolunteer = (await getCollection("volunteer"))
-  .sort(
-    (a, b) =>
-      new Date(b.data.dateStart).valueOf() -
-      new Date(a.data.dateStart).valueOf()
-  )
+  .sort(sortByDateAndStatus)
   .slice(0, SITE.NUM_VOLUNTEER_ON_HOMEPAGE);
 
 const volunteer = await Promise.all(
